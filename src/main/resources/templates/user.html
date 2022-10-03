@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"> <html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<body style="background-color:peachpuff">
+<table border="1"> ИНФОРМАЦИОННАЯ СТРАНИЦА ЮЗЕРОВ
+    <tr>
+        <th>ID</th>
+        <th>ИМЯ</th>
+        <th>ФАМИЛИЯ</th>
+    </tr>
+
+    <tr>
+        <td th:text="${user.getId()}"/>
+        <td th:text="${user.getUsername()}"/>
+        <td th:text="${user.getLastName()}"/>
+    </tr>
+</table>
+<br/>
+
+
+
+
+<form  action="#"  th:action="@{/logout}" method="get">
+    <input type="submit" value="ВЫХОД"/>
+</form>
+</body>
+</html>

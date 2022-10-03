@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--xmlns:th="http://www.w3.org/1999/xhtml"> -->
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <title>ИЗМЕНИТЬ ДАННЫЕ ЮЗЕРА</title>
+</head>
+<body style="background-color:peachpuff">
+<form th:method="POST" th:action="@{/admin/update/{id} (id=${user.getId()})}" th:object="${user}">
+    <label for="id">ID</label>
+    <input readonly type="number" th:field="*{id}" id="id" placeholder="ID" required>
+
+
+
+
+
+    <br/>
+    <label for="username">ВВЕДИТЕ ИМЯ: </label>
+    <input type="text" th:field="*{username}" id="username"  placeholder="Имя*" required />
+     <br/>
+
+    <label for="lastname">ВВЕДИТЕ ФАМИЛИЮ: </label>
+    <input type="text" th:field="*{lastName}" id="lastname"  placeholder="Фамилия*" required/>
+    <br/>
+
+    <label for="email">ВВЕДИТЕ АДРЕС ПОЧТЫ: </label>
+    <input type="email" th:field="*{email}" id="email" pattern="([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})" placeholder="Почта*" required/>
+    <label th:if="${#fields.hasErrors('email')}" th:class="'error'" th:errors="*{email}" class="col-lg-4 control-label" style="color:red;" ></label>
+    <br/>
+
+    <label for="password">ВВЕДИТЕ ПАРОЛЬ: </label>
+    <input th:field="*{password}" style="-webkit-text-security: square"  type="text"  id="password"  placeholder="Пароль*"/>
+    <br/>
+    <br>
+    <th:block th:each="role: ${listRoles}">
+        <input type="checkbox" th:field="*{roles}"
+               th:text="${role.name}" th:value="${role.id}" class="m-2"/>
+    </th:block>
+    <br>
+    <br/><br/>
+    <input type="submit" value="ИЗМЕНИТЬ"/>
+</form>
+
+<form action="#" th:action="@{/admin}" method="get">
+    <input type="submit" value="НАЗАД"/>
+</form>
+<br>
+<form action="#" th:action="@{/logout}" method="get">
+    <input type="submit" value="ВЫХОД"/>
+</form>
+
+</body>
+</html>

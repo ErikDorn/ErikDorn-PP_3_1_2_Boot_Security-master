@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"> <html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>СОЗДАТЬ ЮЗЕРА</title>
+</head>
+<body  style="background-color:peachpuff" >
+<form action="#" th:action="@{/admin/create}" th:object="${user}" method="post">
+    <label for="username">ИМЯ: </label>
+    <input type="text" th:field="*{username}" id="username" placeholder="Имя*" required>
+
+        <br><br><br>
+        <label for="lastname">ФАМИЛИЯ: </label>
+        <input type="text" th:field="*{lastName}" id="lastname" placeholder="Фамилия*" required>
+        <br><br><br>
+        <label for="email">ПОЧТА: </label>
+        <input type="email" th:field="*{email}" id="email" pattern="([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})"
+               placeholder="Почта*" required min="1" max="55">
+    <label th:if="${#fields.hasErrors('email')}" th:class="'error'" th:errors="*{email}" class="col-lg-4 control-label" style="color:red;" ></label>
+        <br><br><br>
+        <label for="password">ПАРОЛЬ: </label>
+        <input type="text" th:field="*{password}" id="password" placeholder="Пароль*" required>
+        <br><br><br>
+        <label for="role">РОЛЬ</label>
+        <select name="role" id="role" multiple="multiple">
+            <option value="ROLE_USER">USER</option>
+            <option value="ROLE_ADMIN">ADMIN</option>
+        </select>
+        <br><br><br>
+        <input type = "submit" value = "СОЗДАТЬ"/>
+    </form>
+    <br>
+    <form action="#" th:action="@{/admin}" method="get">
+        <input type="submit" value="НАЗАД"/>
+    </form>
+    <br>
+    <form action="#" th:action="@{/logout}" method="get">
+        <input type="submit" value="ВЫХОД"/>
+    </form>
+</body>
+</html>

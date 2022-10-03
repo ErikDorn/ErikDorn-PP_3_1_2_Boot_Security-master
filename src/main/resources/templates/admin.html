@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body style="background-color:peachpuff">
+<table border="1" bordercolor="grey">ТАБЛИЦА ЮЗЕРОВ
+
+    <colgroup>
+        <col span="6" style="background:Khaki">
+        <col style="background-color:LightCyan">
+    </colgroup>
+    <thread>
+        <tr>
+            <th>ID</th>
+            <th>ИМЯ</th>
+            <th>ФАМИЛИЯ</th>
+            <th>ПОЧТА</th>
+            <th>РОЛЬ</th>
+            <th>ПАРОЛЬ</th>
+            <th>ИЗМЕНИТЬ</th>
+            <th>УДАЛИТЬ</th>
+        </tr>
+    </thread>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.getId()}"/>
+        <td th:text="${user.getUsername()}"/>
+        <td th:text="${user.getLastName()}"/>
+        <td th:text="${user.getEmail()}"/>
+        <td th:text="${user.getRoles()}"/>
+        <td th:text="${user.getPassword()}"/>
+        <td>
+            <a th:href="@{/admin/update/{id}(id=${user.getId()})}">ИЗМЕНИТЬ</a>
+        </td>
+        <td>
+            <a th:href="@{/admin/delete/{id}(id=${user.getId()})}">УДАЛИТЬ</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</div>
+<br>
+<form action="#" th:action="@{/admin/create}" method="get">
+    <input type="submit" value="СОЗДАТЬ"/>
+</form>
+<br>
+<form action="#" th:action="@{/user}">
+    <input type="submit" value="ЮЗЕР-ИНФО"/>
+</form>
+<br>
+<form action="#" th:action="@{/logout}" method="get">
+    <input type="submit" value="ВЫХОД"/>
+</form>
+</div>
+
+
+</body>
+</html>
